@@ -9,14 +9,13 @@
 
   <body>
     <script>
-      var nota = 2
+      var nota = 8
       var res
 
       if (nota >= 7) {
+        res = 'Aprovado'
         if (nota >= 9.5) {
-          res = 'Aprovado com louvor.'
-        } else {
-          res = 'Aprovado.'
+          res += ' com louvor.'
         }
       } else if (nota >= 5) {
         res = 'Recuperação.'
