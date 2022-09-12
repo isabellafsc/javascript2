@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso - Javascript</title>
+  </head>
+
+  <body>
+    <script>
+      var nota = 2
+      var res
+
+      if (nota >= 7) {
+        if (nota >= 9.5) {
+          res = 'Aprovado com louvor.'
+        } else {
+          res = 'Aprovado.'
+        }
+      } else if (nota >= 5) {
+        res = 'Recuperação.'
+      } else {
+        res = 'Reprovado.'
+      }
+
+      document.write(res)
+    </script>
+  </body>
+</html>
