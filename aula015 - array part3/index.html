@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso - Javascript</title>
+  </head>
+
+  <body>
+    <script>
+      var mochila = []
+
+      mochila.push('Faca')
+      mochila.push('Corda')
+      mochila.push('Pederneira')
+      mochila.push('Chave')
+      mochila.push('Lanterna')
+      mochila.push('Pedra')
+
+      //IndexOf - Procura por um elemento específico no array e retorna a sua posição
+      var pos = mochila.indexOf('Lanterna')
+
+      if (pos < 0) {
+        document.write('Item não está na mochila')
+      } else {
+        document.write('Item está na mochila na posição: ' + pos + "<br><br>")
+      }
+
+      //------------------------------------------------------------------------
+
+      var num = [5, 8, 4, 9, 7, 6, 3, 0, 2, 1]
+
+      document.write("Números no array num: " + num + "<br><br>")
+
+      //Sort - Ordena os elementos do array em ordem crescente
+      num.sort()
+
+      document.write("Números com sort: " + num + "<br><br>")
+      //Reverse - Inverte a ordem dos elementos do array
+      num.reverse()
+
+      document.write("Números com reverse: " + num + "<br><br>")
+
+      //Join - Junta todos os elementos de um array em uma string
+      var números = num.join()
+
+      document.write(números + "<br><br>")
+
+      //------------------------------------------------------------------------
+
+      var estojo = [], estojo1 = [], estojo2 = []
+
+      estojo1.push("Caneta")
+      estojo1.push("Cola")
+      estojo1.push("Lápis")
+      estojo1.push("Apontador")
+
+      estojo2.push("Borracha")
+      estojo2.push("Lapiseira")
+      estojo2.push("Régua")
+      estojo2.push("Grafite")
+
+      //Concat - Junta os elementos de dois ou mais arrays e retorna uma cópia com os elementos juntos
+      estojo = estojo1.concat(estojo2),
+      document.write(estojo)
+
+      document.write("<br><br>Quantidade de itens no estojo: " + estojo.length)
+
+
+    </script>
+  </body>
+</html>
