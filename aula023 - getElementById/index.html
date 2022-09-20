@@ -6,10 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Curso - Javascript</title>
   </head>
-
   <body>
-    <script>
+    <p id="texto">Hello World</p>
 
+    <div id="caixa"></div>
+
+    <script>
+      var txt = document.getElementById('texto')
+      txt.style.color = 'red'
+      txt.style.fontSize = '50px'
+
+      var cx = document.getElementById('caixa')
+      cx.style.border = '1px solid black'
+      cx.style.width = '300px'
+      cx.style.height = '300px'
+      cx.style.backgroundColor = 'gray'
     </script>
   </body>
 </html>
