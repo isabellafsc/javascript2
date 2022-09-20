@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso - Javascript</title>
+
+    <style>
+      .titulo {
+        color: #f00;
+        font-size: 20x;
+        text-decoration: underline;
+      }
+      div {
+        border: 1px solid #000;
+        padding: 10px;
+        display: inline-block;
+      }
+      a {
+        display: block;
+      }
+      .quadro {
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="titulo">querySelectorAll</h1>
+    <p>
+      O querySelectorAll() é um método que retorna os elementos do documento que
+      correspondem a uma classe de CSS ou uma tag específica.
+    </p>
+    <h2 class="titulo">Curso de Javascript</h2>
+    <p>teste</p>
+    <div class="quadro">
+      <p>este texto está dentro de uma div</p>
+      <h3>texto div</h3>
+    </div>
+    <div>
+      <p>este texto está dentro de uma div</p>
+      <h3>texto div</h3>
+    </div>
+    <a href="https://www.youtube.com/cfbcursos" target="_blank"> CANAL </a>
+
+    <hr />
+    <script>
+      var tagsP = document.querySelectorAll('p')
+      tagsP[0].style.color='blue'
+      
+      var classe = document.querySelectorAll('.titulo') 
+      for (var i=0; i<classe.length; i++) {
+        document.write(classe[i].innerHTML + "<br>")
+      }
+
+      var elementos=document.querySelectorAll('div.quadro > p')
+      for (var i=0; i<classe.length; i++) {
+        elementos[i].style.color='green'
+      }
+    </script>
+  </body>
+</html>
