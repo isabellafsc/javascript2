@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <script>
+      // getDay() = Retorna o dia da semana, domingo=0, segunda=1
+      // getDate() = Retorna o dia do mês
+      // getMonth() = Retorna o mês, janeiro=0, fevereiro=1
+      // getFullYear() = Retorna o ano com 4 dígitos, ex: 2015
+      // getHours() = Retorna a hora
+      // getMinutes() = Retorna os minutos
+      // getSeconds() = Retorna os segundos
+      // toDateString() = Retorna a data por estêncil, padrão EUA
+      // toDateString() = Retorna a data no formato 16/12/2015
+      // toLocaleString() = Retorna a data e a hora 16/12/2015 23:13:00
+
+      var data = new Date()
+
+      var diasem = data.getDay()
+      var dia = data.getDate()
+      var mes = data.getMonth()
+      var ano = data.getFullYear()
+
+      var meses = new Array("Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
+      var semana = new Array("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado")
+
+      var horas = data.getHours()
+      var minutos = data.getMinutes()
+      var segundos = data.getSeconds() 
+
+      document.write(semana[diasem] + ", " + dia + " de " + meses[mes] + " de " + ano + "<br/>")
+      document.write(horas + ":" + minutos + ":" + segundos + "<br/>")
+
+      //------------------------------------------------------
+
+      var novaData = new Date()
+      novaData.setDate(data.getDate() + 4)
+
+      var diasem2 = novaData.getDay()
+      var dia2 = novaData.getDate()
+      var mes2 = novaData.getMonth()
+      var ano2 = novaData.getFullYear()
+
+      document.write(semana[diasem2] + ", " + dia2 + " de " + meses[mes2] + " de " + ano2 + "<br/>")
+  
+
+    </script>
+  </body>
+</html>
