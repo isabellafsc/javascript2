@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <script>
+      function escreve() {
+        document.write('Hello World')
+      }
+      escreve()
+
+      document.write('<hr>')
+      // ---------------------------------------------------
+
+      function soma(n1, n2) {
+        var resultado = n1 + n2
+        document.write(n1 + ' + ' + n2 + ' = ' + resultado + '<br/>')
+      }
+
+      soma(5, 2)
+      soma(5, 5)
+      soma(675, 554)
+
+      document.write('<hr>')
+      // ---------------------------------------------------
+
+      function soma2(n1, n2) {
+        return n1 + n2
+      }
+
+      document.write(soma2(3, 7))
+
+      document.write('<hr>')
+      // ---------------------------------------------------
+
+      var numeros = new Array(10, 2, 5, 30, 25, 19, 20)
+
+      function media(nums) {
+        var tam = nums.length
+        var soma = 0
+        for (var i = 0; i < tam; i++) {
+          soma += nums[i]
+        }
+        return Math.round(soma / tam)
+      }
+
+      document.write(media(numeros))
+    </script>
+  </body>
+</html>
