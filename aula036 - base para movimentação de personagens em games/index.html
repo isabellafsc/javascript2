@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      #dv1 {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+        background-color: red;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="dv1"></div>
+    <script>
+      var direçãoX
+      var direçãoY
+      var posiçãoX
+      var posiçãoY
+      var velocidade
+      var objeto = document.getElementById('dv1')
+      var tempo
+
+      function inicia() {
+        direçãoX = 0
+        direçãoY = 0
+        posiçãoX = 0
+        posiçãoY = 0
+        velocidade = 10
+        tempo = setInterval(enterFrame, 20)
+        document.addEventListener('keydown', teclaDown)
+        document.addEventListener('keyup', teclaUp)
+      }
+
+      function teclaDown() {
+        switch (event.key) {
+          case 'ArrowLeft':
+            direçãoX = -1
+            break
+          case 'ArrowUp':
+            direçãoY = -1
+            break
+          case 'ArrowRight':
+            direçãoX = +1
+            break
+          case 'ArrowDown':
+            direçãoY = +1
+            break
+        }
+      }
+
+      function teclaUp() {
+        switch (event.key) {
+          case 'ArrowLeft':
+            direçãoX = 0
+            break
+          case 'ArrowUp':
+            direçãoY = 0
+            break
+          case 'ArrowRight':
+            direçãoX = 0
+            break
+          case 'ArrowDown':
+            direçãoY = 0
+            break
+        }
+      }
+
+      function enterFrame() {
+        posiçãoX += direçãoX * velocidade
+        posiçãoY += direçãoY * velocidade
+        objeto.style.left = posiçãoX + 'px'
+        objeto.style.top = posiçãoY + 'px'
+      }
+
+      window.addEventListener('load', inicia)
+    </script>
+  </body>
+</html>
