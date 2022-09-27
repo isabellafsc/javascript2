@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      #dv1 {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="dv1"></div>
+    <br />
+    <button id="bt1">Iniciar</button>
+    <button id="bt2">Parar</button>
+
+    <script>
+
+      function mudaCor() {
+        var obj = document.getElementById('dv1')
+        var r = Math.round(Math.random() * 255)
+        var g = Math.round(Math.random() * 255)
+        var b = Math.round(Math.random() * 255)
+        obj.style.backgroundColor = 'rgb('+r+','+g+','+b+')'
+      }
+
+      var tempo
+
+      function iniciar() {
+        tempo = setInterval(mudaCor,1000) // muda cor no intervalo de 1s
+        //tempo = setTimeout(mudaCor,1000) - muda cor uma vez depois de 1s
+      }
+      function parar () {
+        clearInterval(tempo)
+      }
+
+      document.getElementById('bt1').addEventListener('click', iniciar)
+      document.getElementById('bt2').addEventListener('click', parar)
+
+    </script>
+  </body>
+</html>
