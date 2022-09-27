@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      #dv1 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+        background-color: #f00;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="dv1"></div>
+    <script>
+      
+      var obj = document.getElementById('dv1')
+
+      function msg() {
+        alert('Hello World')
+      }
+
+      obj.addEventListener('click', msg)
+
+      function cor(objeto, cor) {
+        obj.style.backgroundColor = cor
+      }
+
+      obj.addEventListener('mouseover', function (e) {
+        cor(obj, 'yellow')
+      })
+
+      obj.addEventListener('mouseout', function (e) {
+        cor(obj, 'red')
+      })
+
+    </script>
+  </body>
+</html>
