@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <script>
+      var nomeCor = 'Vermelho' //escopo global 
+
+      function cor() {
+        var nomeCor = 'Azul' //escopo local
+        document.write(this.nomeCor + ' - ' + nomeCor + '<br/>')
+        //this. para utilizar o escopo global
+      }
+      cor()
+
+      document.write(nomeCor + '<br/>')
+
+    </script>
+  </body>
+</html>
+ 
