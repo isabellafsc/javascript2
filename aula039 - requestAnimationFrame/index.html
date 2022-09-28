@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      #jogador {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="bt1">Iniciar</button>
+    <button id="bt2">Parar</button>
+    <div id="jogador"></div>
+
+    <script>
+      var jogador
+      var velocidade
+      var direçãoX
+      var direçãoY
+      var posiçãoX
+      var posiçãoY
+      var animação
+      var estado
+
+      function inicia() {
+        velocidade = 3
+        direçãoX = 1
+        direçãoY = 0
+        posiçãoX = 0
+        posiçãoY = 0
+        estado = true
+        jogador = document.getElementById('jogador')
+        jogador.addEventListener('click', moverParar)
+        document.getElementById('bt1').addEventListener('click', mover)
+        document.getElementById('bt2').addEventListener('click', parar)
+        game()
+      }
+      //Clique no objeto
+      function moverParar() {
+        if (estado) {
+          estado = false
+          jogador.style.backgroundColor = 'red'
+          cancelAnimationFrame(animação)
+        } else {
+          estado = true
+          jogador.style.backgroundColor = 'blue'
+          animação = requestAnimationFrame(game)
+        }
+      }
+      //Botão iniciar
+      function mover() {
+        if (!estado) {
+          estado = true
+          jogador.style.backgroundColor = 'blue'
+          animação = requestAnimationFrame(game)
+        }
+      }
+      //Botão parar
+      function parar() {
+        estado = false
+        jogador.style.backgroundColor = 'red'
+        cancelAnimationFrame(animação)
+      }
+
+      function game() {
+        posiçãoX += direçãoX * velocidade
+        // posiçãoY += direçãoY * velocidade
+        jogador.style.left = posiçãoX + 'px'
+        // jogador.style.top = posiçãoY + 'px'
+        if (posiçãoX > 400) {
+          direçãoX = -1
+        } else if (posiçãoX < 0) {
+          direçãoX = 1
+        }
+        animação = requestAnimationFrame(game)
+      }
+
+      window.addEventListener('load', inicia)
+    </script>
+  </body>
+</html>
