@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+    input {
+      width: 470px;
+      text-align: center;
+      font-family: Orbitron;
+      font-size: 80px;
+      background-color: lightgray;
+    }
+  </style>
+  <body>
+    <input type="text" id="rel" />
+
+    <script>
+      function relogio() {
+        var data = new Date()
+        var hora = data.getHours()
+        var min = data.getMinutes()
+        var seg = data.getSeconds()
+
+        if (hora < 10) {
+          hora = "0" + hora
+        }
+        if (min < 10) {
+          min = "0" + min
+        }
+        if (seg < 10) {
+          seg = "0" + seg
+        }
+
+        var horas = hora + ":" + min + ":" + seg
+        document.getElementById('rel').value = horas
+      }
+
+      var tempo = setInterval(relogio, 1000)
+    </script>
+  </body>
+</html>
