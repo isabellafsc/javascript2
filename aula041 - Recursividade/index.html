@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <style>
+    #quad {
+      border: 1px solid #000;
+      background-color: #f00;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+  <body>
+    <div id="quad"></div>
+
+    <script>
+      //Recursividade é quando temos uma função que chama a si mesma, entrando em uma forma de loop, como se fosse um FOR,
+
+      document.write('<hr/>')
+
+      function contador(min, max) {
+        document.write(min + '<br />')
+        if (min < max) {
+          contador(++min, max)
+        }
+      }
+      contador(0, 10)
+
+      document.write('<hr/>')
+      // ---------------------------------------------
+
+      function fatorial(n) {
+        if (n == 1) {
+          return 1
+        }
+        return n * fatorial(n - 1)
+      }
+      document.write(fatorial(4))
+      
+      // ---------------------------------------------
+
+      var objeto = document.getElementById('quad')
+      var angulo = 0
+      var animação
+      function gira() {
+        objeto.style.transform = 'rotate(' + angulo + 'deg)'
+        angulo++
+        if (angulo > 360) {
+          angulo = 0
+        }
+        animação = requestAnimationFrame(gira)
+      }
+      gira()
+      
+    </script>
+  </body>
+</html>
