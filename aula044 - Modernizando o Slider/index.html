@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      #dvslider {
+        width: 1000px;
+        height: 300px;
+        border: 1px solid #000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .btnSlider {
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 30%;
+        color: #fff;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        margin: 0px;
+      }
+      #dvload {
+        width: 100%;
+        height: 5px;
+        margin-top: 25%;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+      }
+      #dvbarra {
+        width: 0%;
+        height: 100%;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="dvslider">
+      <button class="btnSlider" onclick="troca(-1)">←</button>
+      <div id="dvload">
+        <div id="dvbarra"></div>
+      </div>
+      <button class="btnSlider" onclick="troca(1)">→</button>
+    </div>
+
+    <script>
+      var imgs = []
+      var slider
+      var imgAtual
+      var maxImg
+      var tempo
+      var tempoTroca
+      var vtempo
+      var vbarra
+
+      function preCarregamento() {
+        var cont = 1
+        for (var i = 0; i < 5; i++) {
+          imgs[i] = new Image()
+          imgs[i].src = 'imgs/img' + cont + '.jpg'
+          cont++
+        }
+      }
+
+      function carregar(img) {
+        slider.style.backgroundImage = "url('" + imgs[img].src + "')"
+      }
+
+      function inicia() {
+        preCarregamento()
+        imgAtual = 0
+        maxImg = imgs.length - 1
+        slider = document.getElementById('dvslider')
+        vbarra = document.getElementById('dvbarra')
+        carregar(imgAtual)
+        tempoTroca = 0
+        anima()
+      }
+
+      function troca(dir) {
+        tempoTroca = 0
+        imgAtual += dir
+        if (imgAtual > maxImg) {
+          imgAtual = 0
+        } else if (imgAtual < 0) {
+          imgAtual = maxImg
+        }
+        carregar(imgAtual)
+      }
+
+      function anima() {
+        tempoTroca++
+        if(tempoTroca >= 300) {
+          tempoTroca = 0
+          troca(1)
+        }
+        vtempo = tempoTroca/3
+        vbarra.style.width = vtempo + '%'
+        window.requestAnimationFrame(anima)
+      }
+
+      window.addEventListener('load', inicia)
+    </script>
+  </body>
+</html>
