@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Curso - Javascript</title>
     <style>
-      #dvslider{
+      #dvslider {
         width: 1000px;
         height: 300px;
         border: 1px solid #000;
@@ -12,12 +12,46 @@
     </style>
   </head>
   <body>
-  <div id="dvslider"></div>
+    <div id="dvslider"></div>
 
     <script>
+      var imgs = []
+      var slider
+      var imgAtual
+      var maxImg
+      var tempo
 
+      function preCarregamento() {
+        var cont = 1
+        for (var i = 0; i < 5; i++) {
+          imgs[i] = new Image()
+          imgs[i].src = 'imgs/img' + cont + '.jpg'
+          cont++
+        }
+      }
 
+      function carregar(img) {
+        slider.style.backgroundImage = "url('" + imgs[img].src + "')"
+      }
+      
+      function inicia() {
+        preCarregamento()
+        imgAtual = 0
+        maxImg = imgs.length-1
+        slider = document.getElementById('dvslider')
+        carregar(imgAtual)
+        tempo = setInterval(troca, 3000)
+      }
 
+      function troca() {
+        imgAtual++
+        if(imgAtual > maxImg) {
+          imgAtual = 0
+        }
+        carregar(imgAtual)
+      }
+
+      window.addEventListener('load', inicia)
     </script>
   </body>
 </html>
