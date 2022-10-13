@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style></style>
+  </head>
+  <body>
+    <p id="txt">CFB - Curso de Javascript - aula 046 do curso de javascript</p>
+
+    <script>
+      var texto = document.getElementById('txt').innerHTML
+
+      //indexOf() retorna a posição do primeiro caractere especificado a ser encontrado
+      var i = texto.indexOf('o')
+
+      if (i < 0) {
+        document.write('Letra não encontrada <hr>')
+      } else {
+        document.write('indexOf(): ' + i + '<hr>')
+      }
+
+      //lastIndexOf() Retorna a posição do último caractere especificado a ser encontrado.
+      var l = texto.lastIndexOf('o')
+
+      if (l < 0) {
+        document.write('Letra não encontrada <hr>')
+      } else {
+        document.write('lastIndexOf(): ' + l + '<hr>')
+      }
+
+      //localeCompare() Este método compara duas strings, se forem iguais retorna “0” zero, se a primeira for menor que a segunda retorna “-1” e se for maior, retorna “1”
+      var texto2 = texto
+      var lo = texto.localeCompare(texto2)
+
+      if (lo == 0) {
+        document.write('localeCompare(): Strings iguais <hr>')
+      } else {
+        document.write('localeCompare(): Strings diferentes <hr>')
+      }
+
+      //O método slice() corta uma string de um ponto A até um ponto B especificados e retorna o valor recortado.
+      var s = texto.slice(14, 25)
+      document.write('slice(): ' + s + '<hr>')
+
+      //split() subdivide uma string sempre que encontrar o caractere especificado como divisor
+      var sp = texto.split(' ')
+      document.write('split(): ' + sp[6] + '<hr>')
+
+      //O método substr() funciona de forma semelhante ao método slice(), com uma diferença básica no segundo parâmetro, que indica o tamanho do corte.
+      var su = texto.substr(6, 5)
+      document.write('substr(): ' + su + '<hr>')
+
+      // toLowerCase() Converte a string inteira para caracteres minúsculos
+      var toL = texto.toLocaleLowerCase()
+      document.write('toLocaleLowerCase(): ' + toL + '<hr>')
+
+      // toUpperCase() Converte a string inteira para caracteres maiúsculos
+      var toU = texto.toLocaleUpperCase()
+      document.write('toLocaleUpperCase(): ' + toU + '<hr>')
+    </script>
+  </body>
+</html>
