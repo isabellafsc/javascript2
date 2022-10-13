@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style></style>
+  </head>
+  <body>
+    <p id="txt">CFB - Curso de Javascript - aula 046 do curso de javascript</p>
+
+    <script>
+      var texto = document.getElementById('txt').innerHTML
+      
+      //O método search() procura pela ocorrência e retorna sua posição dentro da string, a posição é em relação ao primeiro caractere da ocorrência, veja o código.
+      var s = texto.search(/Javascript/i) //começa na posição 15
+      document.write('search(): ' + s + '<hr>')
+
+      //O método replace() substitui uma string por outra.
+      var r = texto.replace(/curso/ig, 'teste') //com o g substitui todas as palavras 'curso'
+      document.write('replace(): ' + r + '<hr>')
+      
+      //charAt() retorna o caractere na posição indicada como parâmetro do método.
+      var c = texto.charAt(4)
+      document.write('charAt(): ' + c + '<hr>')
+
+      //charCodeAt() retorna o código do caractere na posição indicada como parâmetro do método.
+      var ch = texto.charCodeAt(4)
+      document.write('charCodeAt(): ' + ch + '<hr>')
+
+      //fromCharCode() converte um código informado no caractere correspondente, o programa a seguir converte o código 66 no caractere correspondente que é o “B”.
+      var f = String.fromCharCode(45)
+      document.write('fromCharCode(): ' + f + '<hr>')
+
+      //concat() Concatena, funde, une, junta uma string em outra, no código a seguir juntamos as strings txt1 e txt2.
+      var texto2 = ' - Hello World'
+
+      var co = texto.concat(texto2 + ' - teste')
+      document.write('concat(): ' + co + '<hr>')
+
+    </script>
+  </body>
+</html>
