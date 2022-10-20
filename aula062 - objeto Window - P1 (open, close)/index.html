@@ -6,41 +6,44 @@
     <style></style>
   </head>
   <body>
+    <button onclick="abreJanela()">Abrir Janela</button>
+    <button onclick="fechaJanela()">Fechar Janela</button>
+
     <script>
-      //toString() Converte um valor qualquer em uma string.
-      var num = 141
-      var res = num.toString()
-      var bin = num.toString(2)
-      var oct = num.toString(8)
-      var hex = num.toString(16)
-      document.write('toString(): ' + res + '<br>')
-      document.write('toString(bin): ' + bin + '<br>')
-      document.write('toString(oct): ' + oct + '<br>')
-      document.write('toString(hex): ' + hex + '<hr>')
+      //Objeto window representa a janela do browser, todos os objetos globais, variáveis, funções são automaticamente membros do objeto window.
+      var minhaJanela 
 
-      //trim() Remove os espaços antes e depois da string especificada.
-      var texto = '   CFB - Curso de Javascript   '
+      function abreJanela() {
+        minhaJanela = window.open('teste.html', '_black', 'width=300, height=300, top = 300')
+      }
+      function fechaJanela() {
+        minhaJanela.close()
+      }
 
-      var res = texto.trim()
-      // alert(res)
-      document.write('trim(): ' + res + '<hr>')
+      // window.open(url, target, especificações, replace);
 
-      //Usando caracteres especiais na string
+      // url = Neste parâmetro podemos informar uma url de um site ou um nome de arquivo (html, imagem, etc) que será aberto na nova janela.
 
-      //Como as aspas são os delimitadores da string, precisamos informar ao sistema quando as aspas não estão delimitando a string e sim estão ali para serem impressas. A mesma técnica vale para os apóstrofos e para as barras invertidas.
-      var texto2 = 'CFB - \"Curso\" de Javascript'
-      var texto3 = 'CFB - \'Curso\' de Javascript'
-      var texto4 = 'CFB - \\Curso\\ de Javascript'
+      // target = Especifica como a nova janela será aberta, se será aberta em uma nova janela, ou na janela atual, veja a tabela a seguir para os valores possíveis para este parâmetro.
+      // PARÂMETROS TARGET:
+      // _blank - Abre em uma nova janela, separada da atual
+      // _self  - Abre na mesma janela, sobrepondo a página atual
+      // nome   - Abre a nova janela dentro de outra especificada pelo nome
 
-      document.write(texto2 + '<br>')
-      document.write(texto3 + '<br>')
-      document.write(texto4 + '<hr>')
+      //especificações = Uma série de propriedades para configuração da janela, confira a seguir uma tabela com as propriedades possíveis.
+      //PROPRIEDADES ESPECIFICAÇÕES
+      // channelmode=yes|no|1|0 - Especifica se a janela vai ser exibida em modo “teatro” ou normal
+      // fullscreen=yes|no|1|0  - Abre na mesma janela em modo tela cheia, ocupando toda tela
+      // width=pixels           - Especifica a largura da janela
+      // height=pixels          - Especifica a altura da janela
+      // left=pixels            - Especifica a posição horizontal da janela
+      // top=pixels             - Especifica a posição vertical da janela
+      // menubar=yes|no|1|0     - Mostra ou esconde a barra de menu
+      // status=yes|no|1|0      - Mostra ou esconde a barra de status
+      // titlebar=yes|no|1|0    - Mostra ou esconde a barra de título
+      // toolbar=yes|no|1|0     - Mostra ou esconde a barra de ferramentas
 
-      // \n - Quebra de linha.
-      // \r - Retorno de carro, ENTER
-      // \t - Tabulação TAB
-      // \b - Backspace
-      // \f - Form feed, adiciona um espaço
+      // replace = Especifica se a URL cria uma nova entrada ou substitui a entrada atual no histórico, os valores para este parâmetro são true ou false.
     </script>
   </body>
 </html>
