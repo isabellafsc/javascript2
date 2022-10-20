@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style></style>
+  </head>
+  <body>
+    <script>
+      //toString() Converte um valor qualquer em uma string.
+      var num = 141
+      var res = num.toString()
+      var bin = num.toString(2)
+      var oct = num.toString(8)
+      var hex = num.toString(16)
+      document.write('toString(): ' + res + '<br>')
+      document.write('toString(bin): ' + bin + '<br>')
+      document.write('toString(oct): ' + oct + '<br>')
+      document.write('toString(hex): ' + hex + '<hr>')
+
+      //trim() Remove os espaços antes e depois da string especificada.
+      var texto = '   CFB - Curso de Javascript   '
+
+      var res = texto.trim()
+      // alert(res)
+      document.write('trim(): ' + res + '<hr>')
+
+      //Usando caracteres especiais na string
+
+      //Como as aspas são os delimitadores da string, precisamos informar ao sistema quando as aspas não estão delimitando a string e sim estão ali para serem impressas. A mesma técnica vale para os apóstrofos e para as barras invertidas.
+      var texto2 = 'CFB - \"Curso\" de Javascript'
+      var texto3 = 'CFB - \'Curso\' de Javascript'
+      var texto4 = 'CFB - \\Curso\\ de Javascript'
+
+      document.write(texto2 + '<br>')
+      document.write(texto3 + '<br>')
+      document.write(texto4 + '<hr>')
+
+      // \n - Quebra de linha.
+      // \r - Retorno de carro, ENTER
+      // \t - Tabulação TAB
+      // \b - Backspace
+      // \f - Form feed, adiciona um espaço
+    </script>
+  </body>
+</html>
