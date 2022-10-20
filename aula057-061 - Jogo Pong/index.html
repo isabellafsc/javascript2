@@ -9,22 +9,21 @@
         margin: 0px;
       }
       #dvPainel {
+        width: 960px;
         display: flex;
         align-items: center;
       }
-      .itemPainel {
-        margin: 5px;
-        padding: 5px;
-      }
       h1 {
         margin: 0;
+        margin-left: 90px;
         font: Bold 24px Arial;
         text-align: center;
       }
       #dvPontuacao {
-        font: 16px Arial;
+        margin-left: 343px;
+        font: 18px Arial;
         display: flex;
-        gap: 5px;
+        gap: 10px;
         align-items: center;
       }
       input {
@@ -34,19 +33,26 @@
         text-align: center;
       }
       button {
+        margin-left: 310px;
         width: 70px;
         height: 45px;
-        margin-left: 20px;
         font: bold 15px Arial;
         background-color: lightgray;
         border: 1px solid rgb(77, 77, 77);
         border-radius: 10%;
         cursor: pointer;
       }
+      #linha {
+        width: 2px;
+        height: 500px;
+        left: 484px;
+        position: absolute;
+        border-left: 2px dashed lightgray;
+      }
       #dvJogo {
         width: 960px;
         height: 500px;
-        border: 1px solid lightgray;
+        border: 0px solid lightgray;
         background-color: black;
       }
       #dvBola {
@@ -76,22 +82,20 @@
 
   <body>
     <div id="dvJogo">
+      <div id="linha"></div>
       <div id="dvBola"></div>
       <div id="dvJogador" class="barra esquerda"></div>
       <div id="dvCPU" class="barra direita"></div>
     </div>
     <div id="dvPainel">
-      <div class="itemPainel">
-        <h1>Pontos</h1>
-        <div id="dvPontuacao">
-          <p>JOGADOR</p>
-          <input type="text" id="txtPontosJ" value="0" size="10" />
-          <p>x</p>
-          <input type="text" id="txtPontosC" value="0" size="10" />
-          <p>CPU</p>
-        </div>
+      <div id="dvPontuacao">
+        <p>JOGADOR</p>
+        <input type="text" id="txtPontosJ" value="0" size="10" />
+        <p>x</p>
+        <input type="text" id="txtPontosC" value="0" size="10" />
+        <p>CPU</p>
       </div>
-      <div class="itemPainel">
+      <div>
         <button id="btIniciar">Iniciar</button>
       </div>
     </div>
@@ -143,10 +147,38 @@
       function controlaJogador() {
         if (jogo) {
           posJogadorY += velJogador * dirJogadorY
-          if((posJogadorY + barraHeight) >= campoHeight || posJogadorY <= 0) {
-            posJogadorY += (velJogador * dirJogadorY) * -1
+          if (posJogadorY + barraHeight >= campoHeight || posJogadorY <= 0) {
+            posJogadorY += velJogador * dirJogadorY * -1
           }
           vJogador.style.top = posJogadorY + 'px'
+        }
+      }
+
+      function controlaCpu() {
+        if (jogo) {
+          if (posBolaX > campoWidth / 2 && bolaX > 0) {
+            //Movimentar CPU
+            if (posBolaY + bolaHeight / 2 > posCpuY + barraHeight / 2 + velCpu) {
+              //mover para baixo
+              if (posCpuY + barraHeight <= campoHeight) {
+                posCpuY += velCpu
+              }
+            } else if (
+              (posBolaY + bolaHeight / 2 < posCpuY + barraHeight / 2) - velCpu) {
+              //mover para baixo
+              if (posCpuY >= 0) {
+                posCpuY -= velCpu
+              }
+            }
+          } else {
+            //Posicionar CPU no centro
+            if (posCpuY + barraHeight / 2 < campoHeight / 2) {
+              posCpuY += velCpu
+            } else if (posCpuY + barraHeight / 2 > campoHeight / 2) {
+              posCpuY -= velCpu
+            }
+          }
+          vCpu.style.top = posCpuY + 'px'
         }
       }
 
@@ -155,21 +187,22 @@
         posBolaX += velBola * bolaX
         posBolaY += velBola * bolaY
         //Colisão com jogador
-        if ((posBolaX <= posJogadorX + barraWidth) && (posBolaY + bolaHeight >= posJogadorY) && (posBolaY <= posJogadorY + barraHeight)) {
+        if (posBolaX <= posJogadorX + barraWidth && posBolaY + bolaHeight >= posJogadorY && posBolaY <= posJogadorY + barraHeight) {
           bolaX *= -1
-          bolaY = ((posBolaY + (bolaHeight/2)) - (posJogadorY + (barraHeight/2)))/16
+          bolaY =
+            (posBolaY + bolaHeight / 2 - (posJogadorY + barraHeight / 2)) / 16
         }
         //Colisão com cpu
-        if ((posBolaX >= posCpuX - barraWidth) && (posBolaY + bolaHeight >= posCpuY) && (posBolaY <= posCpuY + barraHeight)) {
+        if (posBolaX >= posCpuX - barraWidth && posBolaY + bolaHeight >= posCpuY && posBolaY <= posCpuY + barraHeight) {
           bolaX *= -1
-          bolaY = ((posBolaY + (bolaHeight/2)) - (posCpuY + (barraHeight/2)))/16
+          bolaY = (posBolaY + bolaHeight / 2 - (posCpuY + barraHeight / 2)) / 16
         }
         //Limites superior e inferior
-        if ((posBolaY >= (campoHeight - bolaHeight)) || (posBolaY <= 0)) {
+        if (posBolaY >= campoHeight - bolaHeight || posBolaY <= 0) {
           bolaY *= -1
         }
         //Limites direita e esquerda (pontos)
-        if (posBolaX >= (campoWidth - bolaWidth)) {
+        if (posBolaX >= campoWidth - bolaWidth) {
           velBola = 0
           posBolaX = posBolaInicialX
           posBolaY = posBolaInicialY
@@ -178,6 +211,8 @@
           pontosJogador++
           vPainelTxtPontosJ.value = pontosJogador
           jogo = false
+          vJogador.style.top = posJogadorY + 'px'
+          vCpu.style.top = posCpuY + 'px'
         } else if (posBolaX <= 0) {
           velBola = 0
           posBolaX = posBolaInicialX
@@ -187,6 +222,8 @@
           pontosCpu++
           vPainelTxtPontosC.value = pontosCpu
           jogo = false
+          vJogador.style.top = posJogadorY + 'px'
+          vCpu.style.top = posCpuY + 'px'
         }
         vBola.style.left = posBolaX + 'px'
         vBola.style.top = posBolaY + 'px'
@@ -214,17 +251,19 @@
         if (jogo) {
           controlaJogador()
           controlaBola()
+          controlaCpu()
         }
         frame = requestAnimationFrame(game)
       }
 
       function iniciaJogo() {
         if (!jogo) {
+          velBola = velCpu = velJogador = 8
           cancelAnimationFrame(frame)
           jogo = true
           dirJogadorY = 0
 
-          if((Math.random()*10) < 5) {
+          if (Math.random() * 10 < 5) {
             bolaX = -1
           } else {
             bolaX = 1
@@ -242,7 +281,6 @@
       }
 
       function inicializar() {
-        velBola = velCpu = velJogador = 8
         vBola = document.getElementById('dvBola')
         vCpu = document.getElementById('dvCPU')
         vJogador = document.getElementById('dvJogador')
@@ -250,7 +288,6 @@
         vPainelTxtPontosC = document.getElementById('txtPontosC')
         vBtIniciar = document.getElementById('btIniciar')
         vBtIniciar.addEventListener('click', iniciaJogo)
-
         document.addEventListener('keydown', event => teclaDw(event))
         document.addEventListener('keyup', event => teclaUp(event))
       }
