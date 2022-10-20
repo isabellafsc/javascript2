@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      #painel {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        width: 400px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="painel"></div>
+
+    <script>
+      var painel = document.getElementById('painel')
+
+      painel.innerHTML = 'Nome do Browser: ' + navigator.appName + '<hr>'
+      painel.innerHTML += 'Versão do Browser: ' + navigator.appVersion + '<hr>'
+      painel.innerHTML += 'Cookies: ' + navigator.cookieEnabled + '<hr>'
+      painel.innerHTML += 'Idioma: ' + navigator.language + '<hr>'
+      painel.innerHTML += 'Online: ' + navigator.onLine + '<hr>'
+      painel.innerHTML += 'Sistema Operacional: ' + navigator.platform + '<hr>'
+      painel.innerHTML += 'Engine: ' + navigator.product + '<hr>'
+      painel.innerHTML += 'Agente: ' + navigator.userAgent + '<hr>'
+      navigator.geolocation.getCurrentPosition(localizar)
+
+      function localizar(pos) {
+        var c = pos.coords
+        painel.innerHTML += 'Localização: Latitude:' + c.latitude + 
+          ' - Longitude: ' + c.longitude + '<hr>'
+      }
+    </script>
+  </body>
+</html>
