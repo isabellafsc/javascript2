@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <button onclick="mudaCor('red')">Vermelho</button>
+    <button onclick="mudaCor('green')">Verde</button>
+    <button onclick="mudaCor('blue')">Azul</button>
+
+    <script>
+      
+      function mudaCor(cor){
+        //parent é uma referência ao pai da janela ou subquadro atual.
+        parent.document.body.style.backgroundColor = cor
+      }
+    </script>
+  </body>
+</html>

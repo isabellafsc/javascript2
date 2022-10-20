@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      #painel {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 15px;
+        width: 1000px;
+        height: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="rolar()">Rolar</button>
+    <div id="painel">
+      <iframe src=""></iframe>
+      <iframe src=""></iframe>
+      <iframe src=""></iframe>
+      <iframe src="pagina2.html"></iframe>
+    </div>
+
+    <script>
+      function rolar() {
+        //scrollBy - Desloca o documento dentro da janela pelo valor fornecido.
+        window.scrollBy(400, 400)
+      }
+
+      //length - Retorna o número de quadros ( <frame>ou <iframe>elementos) na janela.
+      var quantidade = window.length
+      var painel = (document.getElementById('painel').innerHTML +=
+        '<br>Quantidade de frames: ' + quantidade)
+
+      for (var i = 0; i < 3; i++) {
+        //frames - Retorna a própria janela, que é um objeto tipo array, listando os subquadros diretos da janela atual.
+        window.frames[i].location = 'http://cfbcursos.com.br'
+      }
+    </script>
+  </body>
+</html>
