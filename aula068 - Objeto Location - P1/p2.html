@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      body {
+        background-color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Página2 - aula068</h1>
+    <a href="index.html">Home</a>
+
+    <script>
+      //O objeto location contém informações sobre a URL atual do browser.
+
+      // hash - Retorna ou configura parte da url após o caractere #, inclusive o caractere #      
+      var hash = location.hash
+      document.write('<hr>' + hash + '<hr>')
+
+      // host - Retorna ou configura o nome do host da página e o número da porta usada
+      var host = location.host
+      document.write(host + '<hr>')
+
+      // hostname - Retorna ou configura o nome do host da página
+      var hostname = location.host
+      document.write(hostname + '<hr>')
+
+      // href - Retorna ou configura a url da página
+      var href = location.href
+      document.write(href + '<hr>')
+
+      // origin - Retorna o protocolo de origem, host name e número da porta
+      var origin = location.origin
+      document.write(origin + '<hr>')
+
+      // pathname - Retorna ou configura a url da página, caminho, após o host
+      var pathname = location.pathname
+      document.write(pathname + '<hr>')
+
+      // port - Retorna ou configura o número da porta da url
+      var port = location.port
+      document.write(port + '<hr>')
+
+      // protocol - Retorna ou configura o protocolo da página
+      var protocol = location.protocol
+      document.write(protocol + '<hr>')
+
+      // search - Retorna ou configura as informações “querystring”, após o ? da url
+      var search = location.search
+      var dados = hash.split('?')
+      document.write(dados[1] + '<hr>')
+
+    </script>
+  </body>
+</html>
