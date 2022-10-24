@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      #fconf {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px solid black;
+        background-color: gray;
+        padding: 25px;
+        border-radius: 5px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>LocalStorage - Curso de Javascript</h3>
+
+    <p id="painel"></p>
+    <button onclick="mostraConf()">Configurações</button><hr>
+
+    <form id="fconf">
+      <label>Nome: </label><br />
+      <input type="text" name="fnome" id="fnome" size="20" /><br /><br />
+      <label>Cor fundo: </label><br />
+      <input type="radio" name="fcorF" onclick="defineCor(1, 'black')" /> Preto
+      <br />
+      <input type="radio" name="fcorF" onclick="defineCor(1, 'white')" /> Branco
+      <br />
+      <input type="radio" name="fcorF" onclick="defineCor(1, 'red')" /> Vermelho
+      <br />
+      <input type="radio" name="fcorF" onclick="defineCor(1, 'green')" /> Verde
+      <br />
+      <input type="radio" name="fcorF" onclick="defineCor(1, 'blue')" /> Azul
+      <br /><br />
+      <label>Cor texto: </label><br />
+      <input type="radio" name="fcorT" onclick="defineCor(2, 'black')" /> Preto
+      <br />
+      <input type="radio" name="fcorT" onclick="defineCor(2, 'white')" /> Branco
+      <br /><br />
+      <input type="button" value="Gravar" onclick="gravar()" />
+    </form>
+
+    <script>
+      //Javascript permite adicionar, remover e modificar elementos HTML em tempo de execução da página
+
+      var vcorF, vcorT, vnome
+      var form = document.getElementById('fconf')
+
+      if(localStorage.nome) {
+        vnome = localStorage.nome
+        vcorF = localStorage.corFundo
+        vcorT = localStorage.corTexto
+        defineCor(1, vcorF)
+        defineCor(2, vcorT)
+        document.getElementById('painel').innerHTML = 'Bem vindo, ' + vnome
+      }
+
+      function defineCor(op, cor) {
+        if (op == 1) {
+          document.body.style.backgroundColor = cor
+          vcorF = cor
+        } else {
+          document.body.style.color = cor
+          vcorT = cor
+        }
+      }
+
+      function gravar() {
+        vnome = document.getElementById('fnome').value
+        localStorage.nome = vnome
+        localStorage.corFundo = vcorF
+        localStorage.corTexto = vcorT
+        form.style.display='none'
+      }
+
+      function mostraConf() {
+        form.style.display='block'
+      }
+    </script>
+  </body>
+</html>
