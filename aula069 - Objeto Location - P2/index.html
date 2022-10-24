@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      #painel {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        width: 400px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Home - aula069</h1>
+    <button onclick="pagina2()"> Página 2 </button>
+    <button onclick="atualizar()"> Atualizar </button>
+
+    <script>
+      //O objeto location contém informações sobre a URL atual do browser.
+
+      //MÉTODOS
+      // assign()  - Carrega um novo documento
+      function pagina2() {
+        location.assign("p2.html")
+        //location.replace("p2.html") // remove a url do histórico
+      }
+
+      // reload()  - Re-carrega o documento atual
+      function atualizar() {
+        location.reload()
+      }
+
+      // request() - Substitui o documento atual por outro
+    </script>
+  </body>
+</html>
