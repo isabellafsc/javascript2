@@ -12,12 +12,14 @@
     <a href="p2.html">Página 2</a>
     <a href="p3.html">Página 3</a>
     <hr />
+    <button id="btnGo">Voltar 2</button>
     <button id="btnBack">Voltar</button>
     <button id="btnForward">Avançar</button>
 
     <script>
       //Objeto history contém informações sobre a navegação, página visitadas, vamos ver as possibilidades de uso.
       var painel = document.getElementById('info')
+      var btnG = document.getElementById('btnGo')
       var btnB = document.getElementById('btnBack')
       var btnF = document.getElementById('btnForward')
 
@@ -31,15 +33,15 @@
       }
       // go() = Navega para a página correspondente ao valor indicado como parâmetro do método, valores negativos retornam e valores positivos avançam.
       function hGo() {
-        window.history.go(2)
+        window.history.go(-2)
       }
       
       function inicia() {
         painel.innerHTML = 'Tamanho do histórico: ' + history.length
+        btnG.addEventListener('click', hGo)
         btnB.addEventListener('click', hBack)
         btnF.addEventListener('click', hForward)
       }
-
 
       window.addEventListener('load', inicia)
     </script>
