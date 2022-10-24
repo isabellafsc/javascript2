@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <h3>LocalStorage - Curso de Javascript</h3>
+
+    <form name="dados">
+      <label>Nome: </label><br>
+      <input type="text" name="fnome" id="fnome" size="20"><br><br>
+      <label>Cor fundo: </label><br>
+      <input type="radio" name="fcorF" onclick="defineCor(1, 'black')"> Preto <br>
+      <input type="radio" name="fcorF" onclick="defineCor(1, 'white')"> Branco <br>
+      <input type="radio" name="fcorF" onclick="defineCor(1, 'red')"> Vermelho <br>
+      <input type="radio" name="fcorF" onclick="defineCor(1, 'green')"> Verde <br>
+      <input type="radio" name="fcorF" onclick="defineCor(1, 'blue')"> Azul <br><br>
+      <label>Cor texto: </label><br>
+      <input type="radio" name="fcorT" onclick="defineCor(2, 'black')"> Preto <br>
+      <input type="radio" name="fcorT" onclick="defineCor(2, 'white')"> Branco <br><br>
+      <input type="button" value="Gravar" onclick="gravar()">
+    </form>
+
+    <script>
+      //Javascript permite adicionar, remover e modificar elementos HTML em tempo de execução da página
+
+      if (typeof Storage != 'undefine') {
+        //Verificar se navegador suporta método
+      /*
+        //DEFINE CHAVE
+        localStorage.setItem('curso', 'javascript')
+  
+        //REMOVE CHAVE
+        //localStorage.removeItem('curso')
+  
+        //OBTEM VALOR DA CHAVE
+        var vcurso = localStorage.getItem('curso') //ou localStorage.curso
+        document.write(vcurso)
+      */
+      //CONTADOR DE ACESSO
+        if(localStorage.visitas) { 
+          localStorage.visitas = Number(localStorage.visitas) + 1
+        } else {
+          // localStorage.setItem('visitas', 1)
+          localStorage.visitas = 1
+        }
+        document.write('Visitas: ' + localStorage.visitas)
+      
+      } else {
+        document.write('Sem suporte a Web Storage!')
+      }
+
+      //EXERCICIO COM FORMULÁRIO
+      var vcorF, vcorT, vnome
+
+      function defineCor(op, cor) {
+        if (op == 1 ){
+          document.body.style.backgroundColor = cor
+          vcorF = cor
+        } else {
+          document.body.style.color = cor
+          vcorT = cor
+        }
+      }
+
+      function gravar() {
+        vnome = document.getElementById('fnome').value
+        localStorage.nome = vnome
+        localStorage.corFundo = vcorF
+        localStorage.corTexto = vcorT
+      }
+
+    </script>
+  </body>
+</html>
