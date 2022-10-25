@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style></style>
+  </head>
+  <body>
+    <input type="text" id="textoNovo" />
+    <button id="btnAdd">Adicionar</button> <br /><br />
+    <ul id="listaElementos"></ul>
+
+    <script>
+      var p = document.createElement('p')
+      p.textContent = 'Hello world' //CRIA TEXTO
+
+      var t = document.createTextNode(' - teste')
+      p.appendChild(t) //ADICIONA TEXTO
+
+      document.body.appendChild(p)
+
+      //-----------------------------------------------------------------------
+
+      document.getElementById('btnAdd').addEventListener('click', function () {
+        var lista = document.getElementById('listaElementos')
+        var texto = document.getElementById('textoNovo')
+        var li = document.createElement('li')
+        li.textContent = texto.value
+        lista.appendChild(li)
+        texto.value = ''
+        texto.focus()
+      })
+    </script>
+  </body>
+</html>
