@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      .estilo1 {color: red;}
+      .estilo2 {color: blue;}
+    </style>
+  </head>
+  <body>
+    <div id="cfbcursos">
+      <p id="p1" class="estilo1">Curso de Javascript</p>
+      <p id="p2" class="estilo2">Curso de HTML5</p>
+      <p id="p3" class="estilo1">Curso de CSS3</p>
+      <p id="p4" class="estilo2">Curso de PHP/ MySQL</p>
+      <p id="p5" class="estilo1">Curso de C++</p>
+      <p id="p6" class="estilo2">Curso de Photoshop</p>
+      <p id="p7" class="estilo1">Curso de Unity/ C#</p>
+      <p id="p8" class="estilo2">Curso de Flash</p>
+      <hr>
+    </div>
+
+    <script>
+      var elemento = document.getElementById('p1')
+      var atributo = elemento.getAttribute('class')
+
+      console.log(atributo)
+
+    </script>
+  </body>
+</html>
