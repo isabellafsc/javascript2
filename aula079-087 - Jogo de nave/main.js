@@ -1,13 +1,14 @@
-var jogador                     //Elementos
-var frames                      //Controle de animação
-var posJogadorX, posJogadorY    //Posições
-var dirJogadorY, dirJogadorX    //Direção
-var telaWidth, telaHeight       //Tamanhos
-var velJogador                  //Velocidade
-var tecla                       //Controle
+var jogador //Elementos
+var frames //Controle de animação
+var posJogadorX, posJogadorY //Posições
+var dirJogadorY, dirJogadorX //Direção
+var telaWidth, telaHeight //Tamanhos
+var velJogador, velTiro //Velocidade
+var tecla //Controle
 var jogo = false
 
-function teclaDown(event) {  //MOVER NAVE
+function teclaDown(event) {
+  //MOVER NAVE
   tecla = event.key
   if (tecla == 'ArrowUp') {
     dirJogadorY = -1
@@ -22,7 +23,8 @@ function teclaDown(event) {  //MOVER NAVE
   }
 }
 
-function teclaUp(event) {   //PARAR NAVE
+function teclaUp(event) {
+  //PARAR NAVE
   tecla = event.key
   if (tecla == 'ArrowUp' || tecla == 'ArrowDown') {
     dirJogadorY = 0
@@ -42,7 +44,22 @@ function atira(x, y) {
   document.body.appendChild(tiro)
 }
 
-function controlaJogador() {
+function controleTiros() {
+  var tiros = document.getElementsByClassName('tiroJogador')
+  var tamanho = tiros.length
+  for (var i = 0; i < tamanho; i++) {
+    if(tiros[i]) {
+      var posTiro = tiros[i].offsetTop
+      posTiro -= velTiro
+      tiros[i].style.top = posTiro + 'px'
+      if(posTiro < 0) {
+        tiros[i].remove()
+      }
+    }
+  }
+}
+
+function controleJogador() {
   posJogadorY += dirJogadorY * velJogador
   posJogadorX += dirJogadorX * velJogador
   jogador.style.top = posJogadorY + 'px'
@@ -52,7 +69,8 @@ function controlaJogador() {
 function gameLoop() {
   if (jogo) {
     //FUNÇÃO DE CONTROLE
-    controlaJogador()
+    controleJogador()
+    controleTiros()
   }
   frames = requestAnimationFrame(gameLoop)
 }
@@ -65,7 +83,7 @@ function inicia() {
   dirJogadorX = dirJogadorY = 0
   posJogadorX = telaWidth / 2
   posJogadorY = telaHeight / 2
-  velJogador = 5
+  velJogador = velTiro = 5
   jogador = document.getElementById('naveJogador')
   jogador.style.top = posJogadorY + 'px'
   jogador.style.left = posJogadorX + 'px'
