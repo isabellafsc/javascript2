@@ -1,4 +1,4 @@
-var jogador //Elementos
+var jogador, bomba //Elementos
 var frames //Controle de animação
 var posJogadorX, posJogadorY //Posições
 var dirJogadorY, dirJogadorX //Direção
@@ -33,6 +33,21 @@ function teclaUp(event) {
   }
 }
 
+function criaBomba() {
+  if (jogo) {
+    bomba = document.createElement('div')
+    var posBombaX = Math.random() * telaWidth
+    var posBombaY = 0
+    var atributo1 = document.createAttribute('class')
+    var atributo2 = document.createAttribute('style')
+    atributo1.value = 'bomba'
+    atributo2.value = 'top:' + posBombaY + 'px;left:' + posBombaX + 'px'
+    bomba.setAttributeNode(atributo1)
+    bomba.setAttributeNode(atributo2)
+    document.body.appendChild(bomba)
+  }
+}
+
 function atira(x, y) {
   var tiro = document.createElement('div')
   var atributo1 = document.createAttribute('class')
@@ -46,13 +61,12 @@ function atira(x, y) {
 
 function controleTiros() {
   var tiros = document.getElementsByClassName('tiroJogador')
-  var tamanho = tiros.length
-  for (var i = 0; i < tamanho; i++) {
-    if(tiros[i]) {
+  for (var i = 0; i < tiros.length; i++) {
+    if (tiros[i]) {
       var posTiro = tiros[i].offsetTop
       posTiro -= velTiro
       tiros[i].style.top = posTiro + 'px'
-      if(posTiro < 0) {
+      if (posTiro < 0) {
         tiros[i].remove()
       }
     }
