@@ -1,13 +1,13 @@
-var jogador //Elementos
+var jogador, bombas //Elementos
 var frames //Controle de animação
 var posJogadorX, posJogadorY //Posições
 var dirJogadorY, dirJogadorX //Direção
 var telaWidth, telaHeight //Tamanhos
 var velJogador, velTiro, velBomba //Velocidade
-var tecla //Controle
+var tecla, hpPlaneta //Controle
 var jogo = false
-var contagemBombas, painelContBombas, intervaloBomba
-var hpPlaneta
+var painelContBombas, intervaloBomba
+var contagemBombas, indiceExplosao, indiceSom //Contador
 
 function teclaDown(event) {
   //MOVER NAVE
@@ -21,7 +21,7 @@ function teclaDown(event) {
   } else if (tecla == 'ArrowRight' || tecla == 'd') {
     dirJogadorX = 1
   } else if (tecla == ' ') {
-    atira(posJogadorX + 18, posJogadorY)
+    criaTiro(posJogadorX + 18, posJogadorY)
   }
 }
 
@@ -61,7 +61,7 @@ function criaBomba() {
 }
 
 function controleBombas() {
-  var bombas = document.getElementsByClassName('bomba')
+  bombas = document.getElementsByClassName('bomba')
   for (var i = 0; i < bombas.length; i++) {
     if (bombas[i]) {
       var posBomba = bombas[i].offsetTop
@@ -69,13 +69,14 @@ function controleBombas() {
       bombas[i].style.top = posBomba + 'px'
       if (posBomba > telaHeight) {
         hpPlaneta -= 1
+        criaExplosao(2, bombas[i].offsetLeft, null)
         bombas[i].remove()
       }
     }
   }
 }
 
-function atira(x, y) {
+function criaTiro(x, y) {
   var tiro = document.createElement('div')
   var atributo1 = document.createAttribute('class')
   var atributo2 = document.createAttribute('style')
@@ -93,11 +94,78 @@ function controleTiros() {
       var posTiro = tiros[i].offsetTop
       posTiro -= velTiro
       tiros[i].style.top = posTiro + 'px'
+      colisaoTiroBomba(tiros[i])
       if (posTiro < 0) {
         tiros[i].remove()
       }
     }
   }
+}
+
+function colisaoTiroBomba(tiro) {
+  for (var i = 0; i < bombas.length; i++) {
+    if (bombas[i]) {
+      if (
+        //CIMA TIRO COM BAIXO BOMBA
+        tiro.offsetTop <= bombas[i].offsetTop + 40 &&
+        //BAIXO TIRO COM CIMA BOMBA
+        tiro.offsetTop + 6 >= bombas[i].offsetTop &&
+        //ESQUERDA TIRO COM DIREITA BOMBA
+        tiro.offsetLeft <= bombas[i].offsetLeft + 24 &&
+        //DIREITA TIRO COM ESQUERDA BOMBA
+        tiro.offsetLeft + 4 >= bombas[i].offsetLeft
+      ) {
+        criaExplosao(1, bombas[i].offsetLeft - 25, bombas[i].offsetTop)
+        bombas[i].remove()
+        tiro.remove()
+      }
+    }
+  }
+}
+
+function criaExplosao(tipo, x, y) {
+  if (document.getElementById('explosao' + (indiceExplosao - 5))) { //REMOVE ELEMENTO QUANDO TIVER 5 COM MESMO ID
+    document.getElementById('explosao' + (indiceExplosao - 5)).remove()
+  }
+
+  //TIPO (1 = AR) (2 = CHÃO)
+  var explosao = document.createElement('div')
+  var img = document.createElement('img')
+  var som = document.createElement('audio')
+  //ATRIBUTOS PARA DIV
+  var atributo1 = document.createAttribute('class')
+  var atributo2 = document.createAttribute('style')
+  var atributo3 = document.createAttribute('id')
+  //ATRIBUTOS PARA IMG
+  var atributo4 = document.createAttribute('src')
+  //ATRIBUTOS PARA AUDIO
+  var atributo5 = document.createAttribute('src')
+  var atributo6 = document.createAttribute('id')
+
+  if (tipo == 1) {
+    atributo1.value = 'explosaoAr'
+    atributo2.value = 'top:' + y + 'px;left:' + x + 'px'
+    atributo4.value = './assets/explosao_ar.gif?' + new Date()
+  } else {
+    atributo1.value = 'explosaoChao'
+    atributo2.value = 'top:' + (telaHeight - 57) + 'px;left:' + (x - 17) + 'px'
+    atributo4.value = './assets/explosao_chao.gif?' + new Date()
+  }
+  atributo3.value = 'explosao' + indiceExplosao
+  atributo5.value = './assets/exp1.mp3?' + new Date()
+  atributo6.value = 'som' + indiceSom
+  explosao.setAttributeNode(atributo1)
+  explosao.setAttributeNode(atributo2)
+  explosao.setAttributeNode(atributo3)
+  img.setAttributeNode(atributo4)
+  som.setAttributeNode(atributo5)
+  som.setAttributeNode(atributo6)
+  explosao.appendChild(img)
+  explosao.appendChild(som)
+  document.body.appendChild(explosao)
+  // document.getElementById('som' + indiceSom).play()
+  indiceExplosao++
+  indiceSom++
 }
 
 function controleJogador() {
@@ -131,9 +199,11 @@ function inicia() {
   jogador.style.left = posJogadorX + 'px'
 
   clearInterval(intervaloBomba)
-  contagemBombas = 150
+  contagemBombas = 10 //QUANTIDADE DE BOMBAS NO JOGO
   velBomba = 3
   intervaloBomba = setInterval(criaBomba, 1700)
+
+  indiceExplosao = indiceSom = 0
 
   hpPlaneta = 100
 
