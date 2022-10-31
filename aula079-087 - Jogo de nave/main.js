@@ -6,7 +6,8 @@ var telaWidth, telaHeight //Tamanhos
 var velJogador, velTiro, velBomba //Velocidade
 var tecla, hpPlaneta //Controle
 var jogo = false
-var painelContBombas, intervaloBomba
+var barraPlaneta, painelContBombas, telaMensagem //Painéis
+var intervaloBomba
 var contagemBombas, indiceExplosao, indiceSom //Contador
 
 function teclaDown(event) {
@@ -47,7 +48,7 @@ function teclaUp(event) {
 function criaBomba() {
   if (jogo) {
     var bomba = document.createElement('div')
-    var posBombaX = Math.random() * telaWidth
+    var posBombaX = Math.random() * telaWidth - 20
     var posBombaY = 0
     var atributo1 = document.createAttribute('class')
     var atributo2 = document.createAttribute('style')
@@ -57,6 +58,8 @@ function criaBomba() {
     bomba.setAttributeNode(atributo2)
     document.body.appendChild(bomba)
     contagemBombas--
+    painelContBombas = document.getElementById('contBombas')
+    painelContBombas.innerHTML = 'Bombas restantes: ' + contagemBombas
   }
 }
 
@@ -68,7 +71,7 @@ function controleBombas() {
       posBomba += velBomba
       bombas[i].style.top = posBomba + 'px'
       if (posBomba > telaHeight) {
-        hpPlaneta -= 1
+        hpPlaneta -= 30   //DANO QUE O PLANETA RECEBE
         criaExplosao(2, bombas[i].offsetLeft, null)
         bombas[i].remove()
       }
@@ -124,8 +127,9 @@ function colisaoTiroBomba(tiro) {
 }
 
 function criaExplosao(tipo, x, y) {
-  if (document.getElementById('explosao' + (indiceExplosao - 5))) { //REMOVE ELEMENTO QUANDO TIVER 5 COM MESMO ID
-    document.getElementById('explosao' + (indiceExplosao - 5)).remove()
+  if (document.getElementById('explosao' + (indiceExplosao - 4))) {
+    //REMOVE ELEMENTO QUANDO TIVER 4 COM MESMO ID
+    document.getElementById('explosao' + (indiceExplosao - 4)).remove()
   }
 
   //TIPO (1 = AR) (2 = CHÃO)
@@ -163,7 +167,7 @@ function criaExplosao(tipo, x, y) {
   explosao.appendChild(img)
   explosao.appendChild(som)
   document.body.appendChild(explosao)
-  // document.getElementById('som' + indiceSom).play()
+  document.getElementById('som' + indiceSom).play()
   indiceExplosao++
   indiceSom++
 }
@@ -173,6 +177,45 @@ function controleJogador() {
   posJogadorX += dirJogadorX * velJogador
   jogador.style.top = posJogadorY + 'px'
   jogador.style.left = posJogadorX + 'px'
+
+  if (posJogadorX < 0) {
+    posJogadorX = 0
+  } else if (posJogadorX > telaWidth - 40) {
+    posJogadorX = telaWidth - 40
+  } else if (posJogadorY < 200) {
+    posJogadorY = 200
+  } else if (posJogadorY > telaHeight - 40) {
+    posJogadorY = telaHeight - 40
+  }
+}
+
+function gerenciaGame() {
+  barraPlaneta.style.width = hpPlaneta + 'px'
+
+  if (contagemBombas <= 0) {
+    jogo = false
+    clearInterval(intervaloBomba)
+    bombas = document.getElementsByClassName('bomba')
+    for (var i = 0; i < bombas.length; i++) {
+      if (bombas[i]) {
+        bombas[i].remove()
+      }
+    }
+    telaMensagem.style.backgroundImage = 'url("./assets/vitoria.jpg")'
+    telaMensagem.style.display = 'block'
+  }
+  if (hpPlaneta <= 0) {
+    jogo = false
+    clearInterval(intervaloBomba)
+    bombas = document.getElementsByClassName('bomba')
+    for (var i = 0; i < bombas.length; i++) {
+      if (bombas[i]) {
+        bombas[i].remove()
+      }
+    }
+    telaMensagem.style.backgroundImage = 'url("./assets/derrota.jpg")'
+    telaMensagem.style.display = 'block'
+  }
 }
 
 function gameLoop() {
@@ -182,14 +225,40 @@ function gameLoop() {
     controleTiros()
     controleBombas()
   }
+  gerenciaGame()
   frames = requestAnimationFrame(gameLoop)
 }
 
-function inicia() {
+function reinicia() {
+  telaMensagem.style.display = 'none'
+  clearInterval(intervaloBomba)
+  cancelAnimationFrame(frames)
+  hpPlaneta = 300
+  posJogadorX = telaWidth / 2
+  posJogadorY = telaHeight / 2
+  jogador.style.top = posJogadorY + 'px'
+  jogador.style.left = posJogadorX + 'px'
+  contagemBombas = 20   //QUANTIDADE DE BOMBAS NO JOGO
+  painelContBombas.innerHTML = 'Bombas restantes: 20'
   jogo = true
+  intervaloBomba = setInterval(criaBomba, 1700)
+  gameLoop()
+}
+
+function inicia() {
+  jogo = false
+
+  //CONTROLES TELAS
   telaWidth = window.innerWidth
   telaHeight = window.innerHeight
+  telaMensagem = document.getElementById('telaMensagem')
+  telaMensagem.style.background = 'url("./assets/intro.jpg")'
+  telaMensagem.style.display = 'block'
+  document.getElementById('btnJogar').addEventListener('click', reinicia)
+  painelContBombas = document.getElementById('contBombas')
+  painelContBombas.innerHTML = 'Bombas restantes: 20'
 
+  //CONTROLES JOGADOR
   dirJogadorX = dirJogadorY = 0
   posJogadorX = telaWidth / 2
   posJogadorY = telaHeight / 2
@@ -198,16 +267,16 @@ function inicia() {
   jogador.style.top = posJogadorY + 'px'
   jogador.style.left = posJogadorX + 'px'
 
-  clearInterval(intervaloBomba)
-  contagemBombas = 10 //QUANTIDADE DE BOMBAS NO JOGO
+  //CONTROLES BOMBAS
   velBomba = 3
-  intervaloBomba = setInterval(criaBomba, 1700)
 
+  //CONTROLES EXPLOSÃO
   indiceExplosao = indiceSom = 0
 
-  hpPlaneta = 100
-
-  gameLoop()
+  //CONTROLES PLANETA
+  hpPlaneta = 300
+  barraPlaneta = document.getElementById('barraPlaneta')
+  barraPlaneta.style.width = hpPlaneta + 'px'
 }
 
 document.addEventListener('keydown', teclaDown)
