@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      img {
+        width: 50%;
+        height: 50%;
+      }
+    </style>
+  </head>
+  <body onclick="ativo()">
+    <input type="text" name="txt" />
+    <button>teste</button> <br /><br />
+    <textarea rows="5" cols="20" id="txtOriginal">
+CFB Cursos - Curso de Javascript - Aula 88 - Atributo activeElement
+    </textarea>
+    <br />
+    Texto Selecionado: <span id="txtSelecionado"></span><br />
+    <img src="logo.png" />
+    <div id="caixa"></div>
+
+    <script>
+      //ATIVIDADE 1
+      function ativo() {
+        var elemento = document.activeElement.tagName
+        console.log('Atividade 1: ' + elemento) //MOSTRA NOME DA TAG DO ELEMENTO QUE CLICAR
+      }
+
+      //------------------------------------------------------
+      //ATIVIDADE 2
+      var divCaixa = document.getElementById('caixa')
+      var frames
+      loop()
+
+      function loop() {
+        divCaixa.innerHTML = 'Atividade 2: ' + document.activeElement.tagName
+        frames = requestAnimationFrame(loop)
+      }
+
+      //------------------------------------------------------
+      //ATIVIDADE 3
+      var texto = document.getElementById('txtOriginal')
+      texto.addEventListener('mouseup', copiarTexto)
+
+      function copiarTexto() {
+        document.getElementById('txtSelecionado').innerHTML = 'Atividade 3: ' +
+          document.activeElement.value.substring(
+            document.activeElement.selectionStart,
+            document.activeElement.selectionEnd
+          )
+      }
+    </script>
+  </body>
+</html>
