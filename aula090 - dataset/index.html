@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      .carro {
+        width: 371px;
+        height: 750px;
+        display: inline;
+        cursor: pointer;
+      }
+      #painel {
+        border: solid 3px #000;
+        border-radius: 10px;
+        padding: 10px;
+        width: 500px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="painel"></div>
+    <div id="c1" class="carro">
+      <img
+        src="./assets/c1.png"
+        data-modelo="Popular"
+        data-cor="Verde"
+        data-potencia="80"
+        data-velocidade="120"
+      />
+    </div>
+    <div id="c2" class="carro">
+      <img
+        src="./assets/c2.png"
+        data-modelo="Corrida"
+        data-cor="Vermelho"
+        data-potencia="350"
+        data-velocidade="320"
+      />
+    </div>
+    <div id="c3" class="carro">
+      <img
+        src="./assets/c3.png"
+        data-modelo="Familia"
+        data-cor="Amarelo"
+        data-potencia="110"
+        data-velocidade="180"
+      />
+    </div>
+    <div id="c4" class="carro">
+      <img
+        src="./assets/c4.png"
+        data-modelo="Esportivo"
+        data-cor="Azul"
+        data-potencia="220"
+        data-velocidade="260"
+      />
+    </div>
+
+    <script>
+      document.getElementById('c1').addEventListener('click', definePainel)
+      document.getElementById('c2').addEventListener('click', definePainel)
+      document.getElementById('c3').addEventListener('click', definePainel)
+      document.getElementById('c4').addEventListener('click', definePainel)
+
+      function definePainel() {
+        var obj = event.target
+        var painel = document.getElementById('painel')
+        painel.innerHTML = 'Modelo: ' + obj.dataset.modelo + '<br>'
+        painel.innerHTML += 'Cor: ' + obj.dataset.cor + '<br>'
+        painel.innerHTML += 'Potencia: ' + obj.dataset.potencia + '<br>'
+        painel.innerHTML += 'Velocidade: ' + obj.dataset.velocidade + ' km/h<br>'
+      }
+    </script>
+  </body>
+</html>
