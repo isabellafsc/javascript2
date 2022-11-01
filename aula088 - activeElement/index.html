@@ -3,12 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <title>Curso - Javascript</title>
-    <style>
-      img {
-        width: 50%;
-        height: 50%;
-      }
-    </style>
   </head>
   <body onclick="ativo()">
     <input type="text" name="txt" />
@@ -17,8 +11,7 @@
 CFB Cursos - Curso de Javascript - Aula 88 - Atributo activeElement
     </textarea>
     <br />
-    Texto Selecionado: <span id="txtSelecionado"></span><br />
-    <img src="logo.png" />
+    Atividade 3: Texto Selecionado:  <span id="txtSelecionado"></span><br /><br />
     <div id="caixa"></div>
 
     <script>
@@ -45,7 +38,7 @@ CFB Cursos - Curso de Javascript - Aula 88 - Atributo activeElement
       texto.addEventListener('mouseup', copiarTexto)
 
       function copiarTexto() {
-        document.getElementById('txtSelecionado').innerHTML = 'Atividade 3: ' +
+        document.getElementById('txtSelecionado').innerHTML = 
           document.activeElement.value.substring(
             document.activeElement.selectionStart,
             document.activeElement.selectionEnd
