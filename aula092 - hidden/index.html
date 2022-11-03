@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style>
+      body {
+        padding: 0;
+      }
+      .carro {
+        width: 160px;
+        margin-bottom: 50px;
+      }
+      .menu_item {
+        height: 100%;
+        cursor: pointer;
+      }
+      #menu {
+        border: 3px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        width: 210px;
+        height: 100px;
+        margin: 10px;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="menu">
+      <img src="./assets/c1.png" data-nome="c1" id="btnc1" class="menu_item" />
+      <img src="./assets/c2.png" data-nome="c2" id="btnc2" class="menu_item" />
+      <img src="./assets/c3.png" data-nome="c3" id="btnc3" class="menu_item" />
+      <img src="./assets/c4.png" data-nome="c4" id="btnc4" class="menu_item" />
+    </div>
+    <img src="./assets/c1.png" id="c1" class="carro" />
+    <img src="./assets/c2.png" id="c2" class="carro" />
+    <img src="./assets/c3.png" id="c3" class="carro" />
+    <img src="./assets/c4.png" id="c4" class="carro" />
+    <script>
+      for (var i = 1; i < 5; i++) {
+        document.getElementById('c' + i).hidden = true
+      }
+      document.getElementById('btnc1').addEventListener('click', mostrar)
+      document.getElementById('btnc2').addEventListener('click', mostrar)
+      document.getElementById('btnc3').addEventListener('click', mostrar)
+      document.getElementById('btnc4').addEventListener('click', mostrar)
+
+      function mostrar() {
+        for (var i = 1; i < 5; i++) {
+          document.getElementById('c' + i).hidden = true
+        }
+        var obj = event.target.dataset.nome
+        document.getElementById(obj).hidden = false
+      }
+    </script>
+  </body>
+</html>
