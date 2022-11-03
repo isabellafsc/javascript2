@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <style></style>
+  </head>
+  <body>
+    <script>
+      var num1 = 10
+      var num1 = 100
+      num1 = 1000
+      console.log('var: num1 = ' + num1)
+
+      let num2 = 20
+      {
+        let num2 = 200
+        console.log('let: num2 = ' + num2)
+      }
+      console.log('let: num2 = ' + num2)
+
+      let num3 = 30
+      num3 = 3
+      {
+        num3 = 300
+      }
+      console.log('let: num3 = ' + num3)
+
+      const num4 = 40 //NÃO PODE SER ALTERADO
+      console.log('const: num4 = ' + num4)
+
+      //- As declarações de var tem escopo global ou de função, enquanto as declarações de let e de const têm escopo de bloco.
+      //- Variáveis de var podem ser atualizadas e declaradas novamente dentro de seu escopo. As variáveis de let podem ser atualizadas, mas não podem ser declaradas novamente. As variáveis de const não podem ser atualizadas nem declaradas novamente.
+      //- Todas elas passam por hoisting para o topo de seu escopo. Porém, enquanto variáveis com var são inicializadas com undefined, as variáveis com let e const não são inicializadas.
+      //- Enquanto var e let podem ser declaradas sem ser inicializadas, const precisa da inicialização durante a declaração.
+    </script>
+  </body>
+</html>
