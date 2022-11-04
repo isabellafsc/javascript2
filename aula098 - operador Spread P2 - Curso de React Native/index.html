@@ -6,22 +6,33 @@
   </head>
   <body>
     <script>
-      const notas = [100, 60, 40]
+      const produtos = [
+        { id: '001', desc: ['Mouse', '25.00'] },
+        { id: '002', desc: ['Teclado', '50.00'] },
+        { id: '003', desc: ['Monitor', '430.00'] }
+      ]
+      console.log(produtos)
 
-      console.log(notas)
-      console.log(...notas)
+      const p = [...produtos]
+      console.log(p)
 
-      function soma(n1, n2, n3) {
-        return n1 + n2 + n3
-      }
-      console.log(soma(notas[0], notas[1], notas[2]))
-      console.log(soma(...notas))
+      const p2 = [produtos]
+      console.log(p2)
 
-      //..................................................
-      const jogador = [(nome = 'Bruno'), (pontos = 1000), (vida = 7)]
+      //-------------------------------------------------
 
-      console.log(jogador)
-      console.log(...jogador)
+      const n1 = [100, 200, 300]
+      const n2 = [400, 500, 600]
+      const n3 = [700, 800, 900]
+      const n4 = [...n1, ...n2, ...n3]
+      console.log(n4)
+      
+      //-------------------------------------------------
+
+      const aluno = { nome: 'Bruno', sobrenome: 'Campos' }
+      const notas = {n1: 80, n2:75, n3:92, n4:85}
+      const info = {...aluno, ...notas}
+      console.log(info)
     </script>
   </body>
 </html>
