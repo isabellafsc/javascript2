@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <script>
+      //Uma Arrow Function é uma alternativa compacta a uma expressão de função tradicional, mas é limitada e não pode ser usada em todas as situações.
+
+      const soma = (...num) => {
+        let r = 0
+        for (n of num) r += n
+        return r
+      }
+      console.log(soma(5, 6))
+
+      //-----------------------------------------
+
+      const par = num => {
+        if (num % 2 == 0) return true
+        else return false
+      }
+      console.log(par(5) ? 'É Par' : 'É Ímpar')
+
+    </script>
+  </body>
+</html>
