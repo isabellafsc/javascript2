@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <script>
+      const notas = [100, 60, 40]
+
+      console.log(notas)
+      console.log(...notas)
+
+      function soma(n1, n2, n3) {
+        return n1 + n2 + n3
+      }
+      console.log(soma(notas[0], notas[1], notas[2]))
+      console.log(soma(...notas))
+
+      //..................................................
+      const jogador = [(nome = 'Bruno'), (pontos = 1000), (vida = 7)]
+
+      console.log(jogador)
+      console.log(...jogador)
+    </script>
+  </body>
+</html>
