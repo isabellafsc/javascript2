@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <script>
+      //Função anônima é uma função que não possui nenhum nome associado a ela.
+      const hello = function () {
+        return 'Hello World'
+      }
+      console.log(hello())
+
+      const soma = function (...num) {
+        let res = 0
+        for (n of num) {
+          res += n
+        }
+        return res
+      }
+
+      console.log(soma(3, 2, 6, 3, 7, 8))
+      console.log(soma(3, 2, 8))
+      console.log(soma(3, 7, 8))
+      console.log(soma)
+    </script>
+  </body>
+</html>
