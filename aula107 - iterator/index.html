@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <script>
+      let num = [10, 1, 9, 2, 8]
+      let it = num[Symbol.iterator]()
+      for (let i = 0; i < num.length; i++) {
+        console.log(it.next().value)
+      }
+
+    </script>
+  </body>
+</html>
