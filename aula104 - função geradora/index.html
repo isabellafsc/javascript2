@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <script>
+      console.log('--- EXEMPLO 1 ---')
+      function* cores() {
+        yield 'Vermelho'
+        yield 'Verde'
+        yield 'Azul'
+        yield 'Amarelo'
+        yield 'Roxo'
+        yield 'Preto'
+        yield 'Branco'
+      }
+
+      for (let c of cores()) {
+        console.log(c)
+      }
+
+      const c = cores()
+      console.log(c.next())
+      console.log(c.next())
+      console.log(c.next())
+      console.log(c.next())
+
+      //----------------------------------------
+
+      console.log('--- EXEMPLO 2 ---')
+      function* cont(n) {
+        let x = 0
+        while (x < n) {
+          yield console.log(x)
+          x++
+        }
+      }
+      const ct = cont(10)
+      console.log(ct.next())
+      console.log(ct.next())
+      console.log(ct.next())
+      console.log(ct.next())
+    </script>
+  </body>
+</html>
