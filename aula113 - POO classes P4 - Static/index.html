@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <script>
+      //A palavra chave static define um método estático para a classe, são feitas diretamente na classe e não podem ser feitas em uma instância da classe. Métodos estáticos são comumente utilizados como funções utilitárias.
+
+      class Carro {
+        static alerta = true
+        constructor(marca, modelo, cor) {
+          this.marca = marca
+          this.modelo = modelo
+          this.cor = cor
+          this.ligado = false
+          this.km = 0
+          this.combustível = 10
+        }
+        info() {
+          console.log('Marca......: ' + this.marca)
+          console.log('Modelo.....: ' + this.modelo)
+          console.log('Cor........: ' + this.cor)
+          console.log('Ligado.....: ' + (this.ligado ? 'Sim' : 'Não'))
+          console.log('KM.........: ' + this.km)
+          console.log('Combustível: ' + this.combustível)
+          console.log('Alerta.....: ' + (Carro.alerta ? 'Sim' : 'Não'))
+          console.log('')
+        }
+        ligar() {
+          this.ligado = true
+        }
+        desligar() {
+          this.ligado = false
+        }
+        //método set é utilizado sempre que dizer definir o valor de um atributo
+        set setComb(valor) {
+          if (valor < 0 || valor > 100) {
+            alert('Valor inválido')
+          } else {
+            this.combustível = valor
+            console.log('Combustível alterado: ' + this.combustível)
+          }
+        }
+
+        set setAlerta(t) {
+          Carro.alerta = t
+        }
+        //método get é utilizado para obter o valor de um atributo
+        get getComb() {
+          return 'Valor atual: ' + this.combustível
+        }
+
+        get getAlerta() {
+          return Carro.alerta
+        }
+      }
+
+      let c1 = new Carro('Honda', 'HRV', 'Vermelho')
+      let c2 = new Carro('VW', 'Golf', 'Prata')
+      let c3 = new Carro('GM', 'Camaro', 'Preto')
+      let c4 = new Carro('Ford', 'Mustang', 'Branco')
+
+      c1.setComb = 100
+      //Mesmo definindo em um objetos, todos recebem este valor por ser static
+      // c1.setAlerta = false
+      Carro.alerta = false
+
+      c1.info()
+      c2.info()
+      c3.info()
+      c4.info()
+    </script>
+  </body>
+</html>
