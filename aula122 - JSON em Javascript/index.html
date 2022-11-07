@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <script>
+      let colabJSON = "{'colaboradores': [
+          { 'nome': 'Bruno', 'salario': 10000, 'idade': 40 },
+          { 'nome': 'Maria', 'salario': 13500, 'idade': 32 },
+          { 'nome': 'Pedro', 'salario': 8200, 'idade': 25 },
+          { 'nome': 'Ana', 'salario': 35000, 'idade': 38 },
+          { 'nome': 'João', 'salario': 5000, 'idade': 21 }
+        ]}"
+
+      let colabOBJ = [
+        { nome: 'Bruno', salario: 10000, idade: 40 },
+        { nome: 'Maria', salario: 13500, idade: 32 },
+        { nome: 'Pedro', salario: 8200, idade: 25 },
+        { nome: 'Ana', salario: 35000, idade: 38 },
+        { nome: 'João', salario: 5000, idade: 21 }
+      ]
+
+      let c_obj = JSON.parse(colabJSON)
+      let c_json = JSON.stringify(colabOBJ)
+
+      console.log(c_obj)
+      console.log(c_json)
+    </script>
+  </head>
+  <body></body>
+</html>
