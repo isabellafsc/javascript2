@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+  </head>
+  <body>
+    <script>
+      
+      let produtos = new Map([
+        ['01', 'Mouse'],
+        ['02', 'Teclado']
+      ])
+
+      produtos.set('03', 'Monitor').set('04', 'Gabinete')
+
+      produtos.set('01', 'Memória')
+      //Set numa chave que já existe substitui o valor
+
+      console.log('Tamanho: ' + produtos.size)
+      console.log(produtos.get('01'))
+
+      for (p of produtos) console.log(p)
+
+    </script>
+  </body>
+</html>
