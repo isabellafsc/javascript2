@@ -9,18 +9,55 @@
       
       let produtos = new Map([
         ['01', 'Mouse'],
-        ['02', 'Teclado']
+        ['02', 'Teclado'],
+        ['03', 'Monitor'],
+        ['04', 'Gabinete'],
       ])
-
-      produtos.set('03', 'Monitor').set('04', 'Gabinete')
-
-      produtos.set('01', 'Memória')
-      //Set numa chave que já existe substitui o valor
-
       console.log('Tamanho: ' + produtos.size)
-      console.log(produtos.get('01'))
-
       for (p of produtos) console.log(p)
+
+      //------------------------------------------------------------
+      console.log('')
+      console.log('--- FOREACH ---')
+      
+      function info(valor, chave) {
+        console.log('Valor: ' + valor + ' - Chave: ' + chave)
+      }
+      produtos.forEach(info);
+      
+      //------------------------------------------------------------
+      console.log('')
+      console.log('--- HAS ---')
+
+      console.log(produtos.has('02') ? 'Tem o produto' : 'Não tem o produto')
+      console.log(produtos.has('06') ? 'Tem o produto' : 'Não tem o produto')
+
+      //------------------------------------------------------------
+      console.log('')
+      console.log('--- KEYS ---')
+
+      let itk = produtos.keys()
+      console.log(itk.next().value)
+      console.log(itk.next().value)
+      
+      //------------------------------------------------------------
+      console.log('')
+      console.log('--- VALUES ---')
+
+      let itv = produtos.values()
+      console.log(itv.next().value)
+      console.log(itv.next().value)
+
+      //------------------------------------------------------------
+      console.log('')
+      console.log('--- CLEAR ---')
+
+      //Delete apaga elemento especificado
+      produtos.delete('01')
+      //Clear apaga todos elementos
+      produtos.clear()
+
+      console.log('Tamanho depois clear: ' + produtos.size)
 
     </script>
   </body>
