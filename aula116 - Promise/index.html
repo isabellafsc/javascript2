@@ -4,99 +4,99 @@
     <meta charset="UTF-8" />
     <title>Curso - Javascript</title>
     <script>
-      Object.prototype
-
-      class Carro {
-        constructor(tpCarro, tpComb) {
-          this.tipo = tpCarro
-          this.qtdCombustível = 100
-          this.ligado = false
-          this.tipoCombustível = tpComb
-        }
-        info() {
-          console.log('Qtd Combustível.: ' + this.qtdCombustível)
-          console.log('Ligado..........: ' + (this.ligado ? 'Sim' : 'Não'))
-          console.log('Tipo Combustível: ' + this.tipoCombustível)
-          if (this.tipo == 1) {
-            console.log('Tipo Carro......: Passeio')
-          } else if (this.tipo == 2) {
-            console.log('Tipo Carro......: Transporte')
-          } else {
-            console.log('Tipo Carro......: Combate')
-          }
-        }
-        set setLigado(t) {
-          this.ligado = t
-        }
-        get getLigado() {
-          return this.ligado
-        }
-
-        set setComb(valor) {
-          if (valor < 0 || valor > 100) {
-            alert('Valor inválido')
-          } else {
-            this.qtdCombustível = valor
-          }
-        }
-        get getComb() {
-          return this.qtdCombustível
-        }
+      function contar(n) {
+        let cont = 0
+        for (i = 0; i < n; i++) cont++
+        return cont
       }
 
-      class CarroCombate extends Carro {
-        constructor(potenciaTiro) {
-          super(3, 'Diesel') //Acessa construtor da classe base
-          this.munição = 1000
-          this.potenciaTiro = potenciaTiro
-          this.blindagem = 100
-        }
-        info() {
-          super.info()
-          console.log('Munição.........: ' + this.munição)
-          console.log('Potencia Tiro...: ' + this.potenciaTiro)
-          console.log('Blindagem.......: ' + this.blindagem)
-        }
+      function contarT(n) {
+        //Função assíncrona, não espera os 2s para executar
+        let cont = 0
+        let t = setTimeout(() => {
+          for (i = 0; i < n; i++) cont++
+        })
+        return cont
       }
 
-      class CarroTransporte extends Carro {
-        constructor() {
-          super(2, 'Diesel')
-          this.passageiros = 30
-        }
-        info() {
-          super.info()
-          console.log('Passageiros.....: ' + this.passageiros)
-        }
+      function contarP(n) {
+        let cont = 0
+        let p = new Promise((resolve, rejected) => {
+          for (i = 0; i < n; i++) cont++
+
+          if (cont == n) resolve(cont)
+          else rejected('Erro')
+        })
+        return p
       }
 
-      class CarroPasseio extends Carro {
-        constructor() {
-          super(1, 'Gasolina')
-        }
+      function contarPT(n) {
+        //Função síncrona, mostra resultado após 2s
+        let cont = 0
+        let p = new Promise((resolve, rejected) => {
+          let t = setTimeout(() => {
+            for (i = 0; i < n; i++) cont++
+
+            if (cont == n) resolve(cont)
+            else rejected('Erro')
+          }, 2000)
+        })
+        return p
       }
 
-      Carro.prototype.potencia = 500
-      Carro.prototype.velocidade = 0
-      Carro.prototype.velocidadeMax = 0
+      console.log('Contar: ' + contar(100))
+      console.log('ContarT: ' + contarT(10))
 
-      Carro.prototype.info2 = function () {
-        //nome 'info' sobrescreve o outro
-        this.info()
-        console.log('Potencia........: ' + this.potencia)
-        console.log('Velocidade......: ' + this.velocidade)
-        console.log('Velocidade Máx..: ' + this.velocidadeMax)
-        console.log('')
+      contarP(10)
+        .then(sucesso => {
+          console.log('ContarP: ' + sucesso)
+          console.log('')
+        })
+        .catch(erro => {
+          console.log(erro)
+          console.log('')
+        })
+
+        contarPT(10)
+        .then(sucesso => {
+          console.log('ContarPT: ' + sucesso)
+          console.log('')
+        })
+        .catch(erro => {
+          console.log(erro)
+          console.log('')
+        })
+
+      // ----------------------------------------------------------
+      
+      function somaPositivos(n1, n2) {
+        let p = new Promise((res, rej) => {
+          if (n1 >= 0 && n2 >= 0) res(n1 + n2)
+          else rej('ERRO!!!')
+        })
+        return p
       }
+      somaPositivos(10, 2)
+        .then(sucesso => {
+          console.log('Soma: ' + sucesso)
+        })
+        .catch(erro => {
+          console.log(erro)
+        })
 
-      let c1 = new CarroCombate(100)
-      let c2 = new CarroTransporte()
-      let c3 = new CarroPasseio()
+      somaPositivos(-10, 2) //Número negativo da erro
+        .then(sucesso => {
+          console.log('Soma: ' + sucesso)
+          console.log('')
+        })
+        .catch(erro => {
+          console.log(erro)
+          console.log('')
+        })
 
-      c1.setLigado = true
-      c1.info2()
-      c2.info2()
-      c3.info2()
+      // ----------------------------------------------------------
+
+      
     </script>
   </head>
   <body></body>
