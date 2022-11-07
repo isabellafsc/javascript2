@@ -4,11 +4,10 @@
     <meta charset="UTF-8" />
     <title>Curso - Javascript</title>
     <script>
-      
       function contar(n) {
         let cont = 0
         for (i = 0; i < n; i++) cont++
-        return cont
+        console.log('Contar: ' + cont)
       }
 
       function contarT(n) {
@@ -17,7 +16,7 @@
         let t = setTimeout(() => {
           for (i = 0; i < n; i++) cont++
         })
-        return cont
+        console.log('ContarT: ' + cont)
       }
 
       function contarP(n) {
@@ -29,6 +28,11 @@
           else rejected('Erro')
         })
         return p
+      }
+
+      async function contarPA(n) {
+        const r = await contarP(n)
+        console.log('ContarPA: ' + r)
       }
 
       function contarPT(n) {
@@ -45,56 +49,23 @@
         return p
       }
 
-      console.log('Contar: ' + contar(100))
-      console.log('ContarT: ' + contarT(10))
-
-      contarP(10)
-        .then(sucesso => {
-          console.log('ContarP: ' + sucesso)
-          console.log('')
-        })
-        .catch(erro => {
-          console.log(erro)
-          console.log('')
-        })
-
-        contarPT(10)
-        .then(sucesso => {
-          console.log('ContarPT: ' + sucesso)
-          console.log('')
-        })
-        .catch(erro => {
-          console.log(erro)
-          console.log('')
-        })
-
-      // ----------------------------------------------------------
-      
-      function somaPositivos(n1, n2) {
-        let p = new Promise((res, rej) => {
-          if (n1 >= 0 && n2 >= 0) res(n1 + n2)
-          else rej('ERRO!!!')
-        })
-        return p
+      async function contarPTA(n) {
+        const r = await contarPT(n)
+        console.log('ContarPTA: ' + r)
       }
-      somaPositivos(10, 2)
-        .then(sucesso => {
-          console.log('Soma: ' + sucesso)
-        })
-        .catch(erro => {
-          console.log(erro)
-        })
 
-      somaPositivos(-10, 2) //Número negativo da erro
-        .then(sucesso => {
-          console.log('Soma: ' + sucesso)
-          console.log('')
-        })
-        .catch(erro => {
-          console.log(erro)
-          console.log('')
-        })
+      contar(100)
+      contarT(10)
+      contarPA(10)
+      contarPTA(10)
 
+      // contarP(10)
+      //   .then(sucesso => console.log('ContarP: ' + sucesso))
+      //   .catch(erro => console.log(erro))
+
+      // contarPT(10)
+      //   .then(sucesso => console.log('ContarPT: ' + sucesso))
+      //   .catch(erro => console.log(erro))
     </script>
   </head>
   <body></body>
