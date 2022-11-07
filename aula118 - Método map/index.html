@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <script>
+      let num = [1, 4, 9, 16, 25]
+      console.log('Números')
+      num.forEach(num => console.log(num))
+      console.log('')
+
+      let raiz = num.map(Math.sqrt)
+      console.log('Raiz')
+      raiz.forEach(num => console.log(num))
+      console.log('')
+
+      let dobro = num.map(n => {
+        return n * 2
+      })
+      console.log('Dobro')
+      dobro.forEach(num => console.log(num))
+    </script>
+  </head>
+  <body></body>
+</html>
