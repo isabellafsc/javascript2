@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <script>
+      let num = [0, 1, 2, 3, 4, 5]
+      let soma = num.reduce((n1, n2) => {
+        console.log(n1 + ' + ' + n2)
+        return n1 + n2
+      })
+
+      console.log(soma)
+      console.log('')
+
+      //-----------------------------------------
+
+      let pessoas = [
+        { nome: 'Bruno', idade: 40 },
+        { nome: 'João', idade: 30 },
+        { nome: 'Maria', idade: 25 },
+        { nome: 'Pedro', idade: 18 }
+      ]
+      let nomes = pessoas.reduce((p1, p2) => {
+        p1.push(p2.nome)
+        return p1
+      }, [])
+
+      let idades = pessoas.reduce((p1, p2) => {
+        p1.push(p2.idade)
+        return p1
+      }, [])
+
+      console.log(nomes)
+      console.log(idades)
+    </script>
+  </head>
+  <body></body>
+</html>
