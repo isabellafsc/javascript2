@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Curso - Javascript</title>
+    <script>
+      let num = [5, 2, 8, 15, 30, 4, 25, 18, 9]
+      let novo = num.filter(elemento => {
+        return elemento >= 10
+      })
+
+      console.log(num)
+      console.log(novo)
+      console.log('')
+
+      //-----------------------------------------------
+      let dados = [
+        { id: 15 },
+        { id: 0 },
+        { id: -10 },
+        { id: null },
+        { id: NaN },
+        { id: 'undefined' },
+        { id: 5.8 },
+        {},
+        { id: 2 }
+      ]
+
+      let validos = dados.filter(elemento => {
+        if (
+          typeof elemento.id == 'number' &&
+          !isNaN(elemento.id) &&
+          elemento.id >= 0
+        ) {
+          return true
+        } else {
+          return false
+        }
+      })
+      console.log(dados)
+      console.log(validos)
+    </script>
+  </head>
+  <body></body>
+</html>
